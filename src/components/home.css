@@ -1,0 +1,259 @@
+/* Home container */
+.home-container {
+  padding: 20px;
+  background-color: #f0f0f0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Home section styling */
+.home-section {
+  background-image: url('https://media.istockphoto.com/id/1475344756/photo/top-view-at-unrecognizable-black-man-holding-smartphone-mockup-and-writing-code.jpg?s=612x612&w=0&k=20&c=AB47gy3UOnuiaTmk4q6QszL4YjKZNOvFVH57jmXss6c=');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  animation: zoomIn 1.5s ease forwards;
+}
+
+/* Content wrapper */
+.content-wrapper {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: slideUp 1.5s ease forwards;
+}
+
+/* Main title */
+.main-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #333;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+/* Description */
+.main-description {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: rgb(104, 100, 100);
+  animation: fadeIn 2s ease forwards;
+}
+
+/* Button */
+.cta-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: bounceIn 1.5s ease forwards;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+/* Image content */
+.image-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px 0;
+  animation: fadeInUp 2s ease forwards;
+}
+
+.text-block {
+  flex: 1;
+  padding: 20px;
+  animation: slideLeft 1.5s ease forwards;
+}
+
+.image-block {
+  flex: 1;
+  animation: slideRight 1.5s ease forwards;
+}
+
+.image {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInZoom 1.5s ease forwards;
+}
+
+/* Divider */
+.divider {
+  margin: 40px 0;
+  border: 1px solid #ddd;
+  animation: expandWidth 1.5s ease forwards;
+}
+
+/* Image gallery */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.gallery-image {
+  max-width: 30%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInZoom 1.8s ease forwards;
+  border: solid black 5px;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .main-title {
+    font-size: 3rem;
+  }
+  
+  .main-description {
+    font-size: 1.3rem;
+  }
+
+  .content-wrapper {
+    padding: 30px;
+  }
+
+  .image-content {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .main-description {
+    font-size: 1.2rem;
+  }
+.home-section{
+  height: 90vh;
+}
+  .cta-button {
+    font-size: 1rem;
+  }
+
+  .content-wrapper {
+    padding: 20px;
+  }
+
+  .gallery-image {
+    width: 200px;
+  }
+}
