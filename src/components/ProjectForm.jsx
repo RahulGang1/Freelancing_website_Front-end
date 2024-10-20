@@ -140,6 +140,6 @@ const ProjectForm = () => {
             </div>
         </div>
     );
-};
+}; 
 
 export default ProjectForm;

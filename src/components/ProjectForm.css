@@ -3,9 +3,14 @@
 .container {
     
     margin: auto;
-    padding: 100px;
+    padding: 10px;
 }
-
+.log{height: 50px;
+    width:100px ;
+}
+.section-title{
+    font-size: 5vw;
+}
 
 .services-section {
     
@@ -24,7 +29,7 @@
     width: 100%;
     animation: slideIn 0.5s ease;
     background-color: #ffffff; /* Keep a clean background for contrast */
-    margin: 10px; /* Add some margin around cards */
+    margin-top: 50px; 
 }
 
 .service-card:hover {
