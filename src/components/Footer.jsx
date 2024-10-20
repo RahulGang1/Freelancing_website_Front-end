@@ -7,7 +7,8 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white p-5 md:p-10">
       <div className="flex flex-wrap justify-between mb-5">
         <div className="footer-logo">
-          <img src="'" alt="Logo" className="max-w-[100px]" />
+          <img className="log" src="https://i.ibb.co/jHh1Tqm/Whats-App-Image-2024-10-10-at-22-21-37-86969a8a.jpg" alt="Logo"  />
+          
         </div>
         <div className="flex gap-10">
           <div className="footer-section">
@@ -42,7 +43,8 @@ const Footer = () => {
 
       </div>
       <div className="flex justify-between items-center border-t border-gray-600 pt-5 flex-wrap">
-        <p>© Photo, Inc. 2019. We love our users!</p>
+        <p>© website Creation, Business Management, Test Paper Creation, Logo Design 
+!</p>
         <div className="flex items-center gap-5">
           <span>Follow us:</span>
           <a href="#"><FaFacebook className="text-xl" /></a>

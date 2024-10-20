@@ -77,7 +77,8 @@ const ContactForm = () => {
                                                 />
                                             </svg>
                                             <h5 className="text-black text-base font-normal leading-6 ml-5">
-                                                rahul@navgurukul.org
+                                            collaboratex7@gmail.com
+
                                             </h5>
                                         </div>
 
@@ -101,7 +102,7 @@ const ContactForm = () => {
                                                 />
                                             </svg>
                                             <h5 className="text-black text-base font-normal leading-6 ml-5">
-                                                654 Sycamore Avenue, Meadowville, WA 76543
+                                                KANPUR (up)
                                             </h5>
                                         </div>
                                     </div>

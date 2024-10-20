@@ -1,0 +1,249 @@
+/* ProjectForm.css */
+
+.container {
+    
+    margin: auto;
+    padding: 10px;
+}
+.log{height: 50px;
+    width:100px ;
+}
+.section-title{
+    font-size: 5vw;
+}
+
+.services-section {
+    
+    justify-content: space-between;
+    gap: 100px;
+    margin-bottom: 50px;
+}
+
+.service-card {
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* overflow: hidden; */
+    gap: 20px; /* Increased gap for better spacing */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, margin 0.3s ease; /* Added margin transition */
+    width: 100%;
+    animation: slideIn 0.5s ease;
+    background-color: #ffffff; /* Keep a clean background for contrast */
+    margin-top: 50px; 
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin: 5px; /* Subtle margin effect on hover */
+}
+
+.service-image {
+    width: 40%; /* Image on the left */
+    height: 50vh;
+    transition: transform 0.3s ease;
+    border-radius: 10px; /* Keep rectangular corners */
+    margin: 10px;
+    border: 2px solid #007BFF; /* Blue border for added effect */
+}
+
+.service-info {
+    padding: 20px;
+    text-align: left; /* Align text to the left */
+    width: 60%; /* Increased width for text */
+    background-color: #f8f9fa; /* Light background for text area */
+    border-radius: 10px; /* Keep rectangular shape */
+}
+
+.service-info h1 {
+    font-size: 1.75rem;
+    color: #FF5733; /* Vibrant color for headings */
+    margin-bottom: 10px;
+    animation: fadeIn 0.5s ease; /* Animation for headings */
+}
+
+.service-info p {
+    font-size: 1.5rem; /* Adjusted font size for better readability */
+    color: #555; /* Dark gray for text */
+    animation: fadeIn 0.7s ease; /* Animation for paragraphs */
+}
+
+/* Animated Text Section */
+.animated-text {
+    border-right: solid 3px rgba(0, 255, 0, .75);
+    white-space: nowrap;
+    /* overflow: hidden; */
+    font-family: 'Source Code Pro', monospace;
+    font-size: 28px;
+    color: rgba(255, 255, 255, .70);
+    margin: 0 auto;
+    animation: animated-text 4s steps(29, end) 1s 1 normal both,
+               animated-cursor 600ms steps(29, end) infinite;
+}
+
+/* Animation */
+@keyframes animated-text {
+    from { width: 0; }
+    to { width: 472px; }
+}
+
+@keyframes animated-cursor {
+    from { border-right-color: rgba(0, 255, 0, .75); }
+    to { border-right-color: transparent; }
+}
+
+
+.project-form-container {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.project-form-container h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #003366;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: #003366;
+    margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #003366;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #ff9900;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 153, 0, 0.4);
+}
+
+.form-textarea {
+    height: 100px;
+    resize: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff9900;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease, box-shadow 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #cc7a00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.success-message {
+    margin-top: 20px;
+    color: #28a745;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.movement-slider {
+    margin-top: 50px;
+    background: linear-gradient(90deg, #003366, #ff9900);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+}
+
+.movement-slider .slider-content h1 {
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+    
+        
+        padding: 10px;
+    }
+    .services-section {
+        flex-direction: column; /* Stack service cards vertically */
+        gap: 20px; /* Decrease gap between cards */
+    }
+
+    .service-card {
+        flex-direction: column; /* Stack image and text vertically */
+        width: 100%; /* Full width for mobile */
+    }
+
+    .service-image {
+        width: 100%; /* Full width for images */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .service-info {
+        width: 100%; /* Full width for text */
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .project-form-container {
+        padding: 20px; /* Decrease padding */
+        margin: 20px; /* Adjust margin */
+    }
+
+    .project-form-container h2 {
+        font-size: 24px; /* Decrease heading size */
+    }
+
+    .form-control {
+        font-size: 14px; /* Adjust input font size */
+    }
+
+    .submit-btn {
+        font-size: 16px; /* Adjust button font size */
+    }
+
+    .success-message {
+        font-size: 16px; /* Adjust success message size */
+    }
+
+    .movement-slider {
+        font-size: 20px; /* Adjust text size in the slider */
+        padding: 15px; /* Decrease padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .form-textarea {
+        height: 80px; /* Adjust textarea height */
+    }
+}
