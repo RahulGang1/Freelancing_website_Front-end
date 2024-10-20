@@ -46,7 +46,7 @@ const Navbar = () => {
         </button>
       </div>
       {isOpen && (
-        <div className="md:hidden flex flex-col items-center absolute top-16 right-4 bg-blue-500 text-white p-4">
+        <div className="md:hidden flex flex-col items-center absolute top-16 right-4 bg-blue-500 text-white p-4 z-50">
           {['Home', 'About', 'Contact'].map(item => (
             <Link key={item} to={`/${item.toLowerCase()}`} className="mb-4 hover:text-black-200">{item}</Link>
           ))}
