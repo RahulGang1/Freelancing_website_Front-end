@@ -17,6 +17,10 @@
   padding: 20px;
   animation: zoomIn 1.5s ease forwards;
 }
+.text-title{
+  font-size: 3vw;
+  color:orange;
+}
 
 /* Content wrapper */
 .content-wrapper {
@@ -232,13 +236,16 @@
   .image-content {
     flex-direction: column;
   }
+  .text-title{
+    font-size: 30px;
+    color:blue;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .main-title {
     font-size: 2rem;
   }
-
   .main-description {
     font-size: 1.2rem;
   }
