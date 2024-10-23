@@ -7,22 +7,41 @@ import Footer from './components/Footer'; // import your Footer component (corre
 import Home from './components/Home';
 import ProjectForm from './components/ProjectForm';
 import ProjectsSuggestions from './components/ProjectsSuggestions';
+import Profile from './components/Profile';
+import NavAdmin from './components/Nav-admin';
 
 const App = () => {
   return (
+    // <Router>
+    //   <Navbar />
+    //   {/* <ProjectsSuggestions/> */}
+    //   <Routes>
+    //     <Route path="/login" element={<LoginPage />} /> 
+    //     <Route path="/signup" element={<SignupPage />} />
+    //     <Route path="/contact" element={<Contact />} />
+    //     <Route path="/service" element={<ProjectForm/>} />
+    //     <Route path="/home" element={<Home />} /> 
+    //     <Route path="/" element={<Home />} />
+    //   </Routes>
+    //   {/* <ProjectsSuggestions/> */}
+    //   <Profile/>
+    //   <Footer />
+    // </Router>
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/login" element={<LoginPage />} /> 
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/service" element={<ProjectForm/>} />
-        <Route path="/home" element={<Home />} /> 
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <ProjectsSuggestions/>
-      <Footer />
-    </Router>
+    <NavAdmin/>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} /> 
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/service" element={<ProjectForm/>} />
+      <Route path="/home" element={<Home />} /> 
+      <Route path="/" element={<Home />} />
+      <Route path="/Project" element={<ProjectsSuggestions/>} />
+      <Route path="/Profile" element={<Profile/>} />
+
+    </Routes>
+    <Footer />
+  </Router>
   );
 };
 

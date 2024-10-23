@@ -30,7 +30,7 @@ const ProjectsSuggestions = () => {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/projects/suggestions')
+    fetch('https://freelancing-website-eta.vercel.app/api/projects/suggestions')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -46,7 +46,7 @@ const ProjectsSuggestions = () => {
 
   // Function to handle project deletion
   const handleDelete = (projectId) => {
-    fetch(`http://localhost:5000/api/projects/suggestions/${projectId}`, {
+    fetch(`https://freelancing-website-eta.vercel.app/api/projects/suggestions/${projectId}`, {
       method: 'DELETE',
     })
       .then((response) => {
