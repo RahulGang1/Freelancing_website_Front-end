@@ -8,13 +8,13 @@ const Reviews = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Fetch reviews from the API
+  
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         const response = await axios.get('https://freelancing-website-eta.vercel.app/api/testimonials');
         setReviews(response.data);
-        setError(null); // Clear any previous errors
+        setError(null);
       } catch (error) {
         console.error('Error fetching reviews:', error);
         setError('Failed to load reviews.');
@@ -23,17 +23,17 @@ const Reviews = () => {
     fetchReviews();
   }, []);
 
-  // Handle form submission
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null); // Clear previous errors
+    setError(null);
 
     const newReview = { user, message };
 
     try {
       await axios.post('https://freelancing-website-eta.vercel.app/api/testimonials/create', newReview);
-      setReviews([...reviews, newReview]); // Update reviews dynamically
+      setReviews([...reviews, newReview]); 
       setUser('');
       setMessage('');
     } catch (error) {
