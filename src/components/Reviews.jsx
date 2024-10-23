@@ -1,182 +1,170 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { motion } from 'framer-motion';
 
 const Reviews = () => {
-    const [reviews, setReviews] = useState([
-        { _id: 1, name: "John Doe", review: "Excellent service! The team was very professional and delivered beyond my expectations.", rating: 5 },
-        { _id: 2, name: "Jane Smith", review: "Great quality products. I'm a repeat customer and always satisfied with my purchases.", rating: 4 },
-        { _id: 3, name: "Mike Johnson", review: "Prompt delivery and amazing customer support. Highly recommended!", rating: 5 }
-    ]);
-    const [newReview, setNewReview] = useState({
-        name: '',
-        review: '',
-        rating: 5
-    });
+  const [reviews, setReviews] = useState([]);
+  const [user, setUser] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        fetchReviews();
-    }, []);
-
+  // Fetch reviews from the API
+  useEffect(() => {
     const fetchReviews = async () => {
-        try {
-            const response = await axios.get('http://localhost:5000/api/testimonials');
-            if (response.data.length > 0) {
-                setReviews(response.data);
-            }
-        } catch (error) {
-            console.error('Error fetching reviews:', error);
-        }
+      try {
+        const response = await axios.get('https://freelancing-website-eta.vercel.app/api/testimonials');
+        setReviews(response.data);
+        setError(null); // Clear any previous errors
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+        setError('Failed to load reviews.');
+      }
     };
+    fetchReviews();
+  }, []);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewReview(prev => ({ ...prev, [name]: value }));
-    };
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null); // Clear previous errors
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post('http://localhost:5000/api/testimonials/create', newReview);
-            setNewReview({ name: '', review: '', rating: 5 });
-            fetchReviews(); // Refresh the reviews after adding a new one
-        } catch (error) {
-            console.error('Error submitting review:', error);
-        }
-    };
+    const newReview = { user, message };
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
+    try {
+      await axios.post('https://freelancing-website-eta.vercel.app/api/testimonials/create', newReview);
+      setReviews([...reviews, newReview]); // Update reviews dynamically
+      setUser('');
+      setMessage('');
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      setError('Failed to submit review.');
+    }
 
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1
-        }
-    };
+    setLoading(false);
+  };
 
-    return (
-        <div className="bg-gray-100 py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.h2 
-                    className="text-3xl font-extrabold text-gray-900 text-center mb-8"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    Customer Reviews
-                </motion.h2>
-                <motion.p 
-                    className="text-xl text-gray-600 text-center mb-12"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                >
-                    At [Your Company Name], we pride ourselves on delivering outstanding service and top-quality products. Our customers are at the heart of everything we do, and their feedback speaks volumes about our commitment to excellence. Below are some of the reviews from our satisfied customers:
-                </motion.p>
-                <motion.div 
-                    className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {reviews.map((review) => (
-                        <motion.div 
-                            key={review._id} 
-                            className="bg-white overflow-hidden shadow rounded-lg"
-                            variants={itemVariants}
-                        >
-                            <div className="px-4 py-5 sm:p-6">
-                                <h3 className="text-lg font-medium text-gray-900">{review.name}</h3>
-                                <div className="mt-2 max-w-xl text-sm text-gray-500">
-                                    <p>{review.review}</p>
-                                </div>
-                                <div className="mt-3 text-sm">
-                                    <span className="text-yellow-400">
-                                        {"★".repeat(review.rating)}
-                                    </span>
-                                    <span className="text-gray-300">
-                                        {"★".repeat(5 - review.rating)}
-                                    </span>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+  return (
+    <div className="reviews-page">
+      <style>
+        {`
+          .reviews-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+          }
 
-                <motion.div 
-                    className="bg-white shadow rounded-lg p-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
-                >
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Add Your Review</h3>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-4">
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={newReview.name}
-                                onChange={handleInputChange}
-                                required
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="review" className="block text-sm font-medium text-gray-700">Review</label>
-                            <textarea
-                                id="review"
-                                name="review"
-                                rows="3"
-                                value={newReview.review}
-                                onChange={handleInputChange}
-                                required
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            ></textarea>
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="rating" className="block text-sm font-medium text-gray-700">Rating</label>
-                            <select
-                                id="rating"
-                                name="rating"
-                                value={newReview.rating}
-                                onChange={handleInputChange}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            >
-                                {[1, 2, 3, 4, 5].map(num => (
-                                    <option key={num} value={num}>{num} Star{num !== 1 ? 's' : ''}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <motion.button
-                            type="submit"
-                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Submit Review
-                        </motion.button>
-                    </form>
-                </motion.div>
+          .header {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+
+          .company-info {
+            text-align: center;
+            margin-bottom: 30px;
+          }
+
+          .reviews-section {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 30px;
+          }
+
+          .review-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-right: 15px;
+            min-width: 250px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+
+          .review-form {
+            text-align: center;
+            margin-top: 20px;
+          }
+
+          .form-input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+          }
+
+          .form-submit {
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+
+          .form-submit:disabled {
+            background-color: #94d3a2;
+            cursor: not-allowed;
+          }
+
+          .error-message {
+            color: red;
+            margin-top: 10px;
+          }
+        `}
+      </style>
+
+      {/* Header Section */}
+      <div className="header">
+        <h1>Customer Reviews</h1>
+      </div>
+
+      {/* Company Info Section */}
+      <div className="company-info">
+        <p>Welcome to [Your Company Name]! Here’s what our customers have to say about us.</p>
+      </div>
+
+      {/* Scrollable Reviews Section */}
+      <div className="reviews-section">
+        {reviews.length > 0 ? (
+          reviews.map((review, index) => (
+            <div className="review-card" key={index}>
+              <h3>{review.user}</h3>
+              <p>{review.message}</p>
             </div>
-        </div>
-    );
+          ))
+        ) : (
+          <p>No reviews available yet.</p>
+        )}
+      </div>
+
+      {/* Review Submission Form */}
+      <div className="review-form">
+        <h2>Submit Your Review</h2>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="Your Name"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            required
+          />
+          <textarea
+            className="form-input"
+            placeholder="Your Review"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+          <button type="submit" className="form-submit" disabled={loading}>
+            {loading ? 'Submitting...' : 'Submit Review'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default Reviews;
-
-
-
-
-
-
