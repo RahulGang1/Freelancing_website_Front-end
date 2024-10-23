@@ -26,7 +26,7 @@ const ProjectForm = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/projects/submit', formData);
+            const response = await axios.post('https://freelancing-website-eta.vercel.app/api/projects/submit', formData);
             console.log('Project submitted:', response.data);
             setSubmitted(true);
         } catch (error) {
