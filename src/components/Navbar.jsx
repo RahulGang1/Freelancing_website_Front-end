@@ -16,7 +16,7 @@ const Navbar = () => {
           ></img>
         </div>
         <div className="hidden md:flex items-center">
-          {['Home', 'Service', 'Contact'].map(item => (
+          {['Home', 'Service', 'Contact', 'Reviews'].map(item => (
             <Link key={item} to={`/${item.toLowerCase()}`} className="mr-4 hover:text-gray-600">{item}</Link>
           ))}
         </div>

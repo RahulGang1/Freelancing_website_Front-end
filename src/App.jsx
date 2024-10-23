@@ -6,7 +6,7 @@ import Contact from './components/Contact'; // import your Contact component (co
 import Footer from './components/Footer'; // import your Footer component (correct file path)
 import Home from './components/Home';
 import ProjectForm from './components/ProjectForm';
-import ProjectsSuggestions from './components/ProjectsSuggestions';
+import Reviews from './components/Reviews';
 
 const App = () => {
   return (
@@ -19,8 +19,8 @@ const App = () => {
         <Route path="/service" element={<ProjectForm/>} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/" element={<Home />} />
+        <Route path="/reviews" element={<Reviews />} />
       </Routes>
-      <ProjectsSuggestions/>
       <Footer />
     </Router>
   );
