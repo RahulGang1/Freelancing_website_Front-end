@@ -17,7 +17,7 @@ const NavAdmin = () => {
           <img className='log' src="https://i.ibb.co/jHh1Tqm/Whats-App-Image-2024-10-10-at-22-21-37-86969a8a.jpg" alt="Company Logo" />
         </div>
         <div className="hidden md:flex items-center">
-          {['Home', 'Service', 'Contact','Project','Profile'].map(item => (
+          {['Home', 'Service', 'Contact','Project','Profile',"Reviews"].map(item => (
             <Link key={item} to={`/${item.toLowerCase()}`} className="mr-4 hover:text-gray-600">{item}</Link>
           ))}
         </div>
@@ -36,7 +36,7 @@ const NavAdmin = () => {
             </svg>
           </button>
         </div>
-      </nav>
+      </nav> 
 
       {isOpen && (
         <div className="md:hidden flex flex-col items-center absolute top-16 right-4 bg-blue-500 text-white p-4 transition-all duration-300 rounded-lg shadow-lg z-50">

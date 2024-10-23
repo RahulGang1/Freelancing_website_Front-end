@@ -17,7 +17,7 @@ const Navbar = () => {
           <img className='log' src="https://i.ibb.co/jHh1Tqm/Whats-App-Image-2024-10-10-at-22-21-37-86969a8a.jpg" alt="Company Logo" />
         </div>
         <div className="hidden md:flex items-center">
-          {['Home', 'Service', 'Contact'].map(item => (
+          {['Home', 'Service', 'Contact', 'Reviews'].map(item => (
             <Link key={item} to={`/${item.toLowerCase()}`} className="mr-4 hover:text-gray-600">{item}</Link>
           ))}
         </div>

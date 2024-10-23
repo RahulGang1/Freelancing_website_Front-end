@@ -7,14 +7,14 @@ import Footer from './components/Footer'; // import your Footer component (corre
 import Home from './components/Home';
 import ProjectForm from './components/ProjectForm';
 import ProjectsSuggestions from './components/ProjectsSuggestions';
-import Profile from './components/Profile';
-import NavAdmin from './components/Nav-admin';
+import NavAdmin from './components/Nav-admin'
+import Reviews from './components/Reviews'
+import Profile from './components/Profile'
 
 const App = () => {
   return (
     // <Router>
     //   <Navbar />
-    //   {/* <ProjectsSuggestions/> */}
     //   <Routes>
     //     <Route path="/login" element={<LoginPage />} /> 
     //     <Route path="/signup" element={<SignupPage />} />
@@ -22,26 +22,29 @@ const App = () => {
     //     <Route path="/service" element={<ProjectForm/>} />
     //     <Route path="/home" element={<Home />} /> 
     //     <Route path="/" element={<Home />} />
+          // <Route path="/Reviews" element={<Reviews/>} />
     //   </Routes>
-    //   {/* <ProjectsSuggestions/> */}
+    //  
     //   <Profile/>
     //   <Footer />
     // </Router>
-    <Router>
-    <NavAdmin/>
-    <Routes>
-      <Route path="/login" element={<LoginPage />} /> 
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/service" element={<ProjectForm/>} />
-      <Route path="/home" element={<Home />} /> 
-      <Route path="/" element={<Home />} />
-      <Route path="/Project" element={<ProjectsSuggestions/>} />
-      <Route path="/Profile" element={<Profile/>} />
 
-    </Routes>
-    <Footer />
-  </Router>
+    // Reviews
+    <Router>
+      <NavAdmin/>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} /> 
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/service" element={<ProjectForm/>} />
+        <Route path="/home" element={<Home />} /> 
+        <Route path="/" element={<Home />} />
+        <Route path="/Project" element={<ProjectsSuggestions />} />
+        <Route path="/Reviews" element={<Reviews/>} />
+        <Route path="/Profile" element={<Profile/>} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 };
 
