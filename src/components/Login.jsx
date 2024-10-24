@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirecting
 
-const LoginPage = () => {
+const LoginPage = ({ setIsAdmin }) => { // Receive setIsAdmin as a prop
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +25,10 @@ const LoginPage = () => {
 
       if (response.ok) {
         setLoginFailed(false);
-        // Show success popup and redirect to Home page
+        // Assuming the response includes whether the user is admin
+        if (data.isAdmin) {
+          setIsAdmin(true); // Set isAdmin to true if the user is admin
+        }
         alert('Login successful! Redirecting to Home page...');
         navigate('/home'); // Redirect to Home page after success
       } else {
@@ -88,6 +91,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-};  
+};
 
 export default LoginPage;

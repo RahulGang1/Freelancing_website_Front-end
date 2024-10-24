@@ -1,49 +1,60 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './components/Login'; // import your LoginPage component (correct file path)
-import SignupPage from './components/SignUp'; // import your SignupPage component (correct file path)
-import Navbar from './components/Navbar'; // import your Navbar component
-import Contact from './components/Contact'; // import your Contact component (correct file path)
-import Footer from './components/Footer'; // import your Footer component (correct file path)
+import LoginPage from './components/Login'; 
+import SignupPage from './components/SignUp'; 
+import Navbar from './components/Navbar'; 
+import Contact from './components/Contact'; 
+import Footer from './components/Footer'; 
 import Home from './components/Home';
 import ProjectForm from './components/ProjectForm';
 import ProjectsSuggestions from './components/ProjectsSuggestions';
-import NavAdmin from './components/Nav-admin'
-import Reviews from './components/Reviews'
-import Profile from './components/Profile'
+import NavAdmin from './components/Nav-admin';
+import Reviews from './components/Reviews';
+import Profile from './components/Profile';
+import AdminSignup from './components/AdminSinUp';
+import { useState } from 'react';
+import ContactPage from './components/ContactPage';
 
 const App = () => {
-  return (
-    // <Router>
-    //   <Navbar />
-    //   <Routes>
-    //     <Route path="/login" element={<LoginPage />} /> 
-    //     <Route path="/signup" element={<SignupPage />} />
-    //     <Route path="/contact" element={<Contact />} />
-    //     <Route path="/service" element={<ProjectForm/>} />
-    //     <Route path="/home" element={<Home />} /> 
-    //     <Route path="/" element={<Home />} />
-          // <Route path="/Reviews" element={<Reviews/>} />
-    //   </Routes>
-    //  
-    //   <Profile/>
-    //   <Footer />
-    // </Router>
+  const [isAdmin, setIsAdmin] = useState(false); // Start with isAdmin as false
+  
 
-    // Reviews
+
+  return (
     <Router>
-      <NavAdmin/>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} /> 
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/service" element={<ProjectForm/>} />
-        <Route path="/home" element={<Home />} /> 
-        <Route path="/" element={<Home />} />
-        <Route path="/Project" element={<ProjectsSuggestions />} />
-        <Route path="/Reviews" element={<Reviews/>} />
-        <Route path="/Profile" element={<Profile/>} />
-      </Routes>
-      <Footer />
+      {isAdmin ? (
+        <>
+          <NavAdmin />
+          <Routes>
+            <Route path="/signup" element={<AdminSignup />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/service" element={<ProjectForm />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<LoginPage setIsAdmin={setIsAdmin} />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/project" element={<ProjectsSuggestions />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/Contact-Data" element={< ContactPage/>} />
+          </Routes>
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/login" element={<LoginPage setIsAdmin={setIsAdmin} />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/service" element={<ProjectForm />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/project" element={<ProjectsSuggestions />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+          <Footer />
+        </>
+      )}
     </Router>
   );
 };
