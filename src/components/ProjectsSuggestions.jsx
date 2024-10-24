@@ -4,61 +4,58 @@ import './ProjectsSuggestions.css';
 const ProjectsSuggestions = () => {
   const [projects, setProjects] = useState([]);
 
+  // Define your dummy projects here (optional)
   const dummyProjects = [
     {
-      _id: '1',
-      name: 'John Doe',
-      email: 'johndoe@gmail.com',
-      projectTitle: 'Furniture Store',
-      projectType: 'E-commerce',
-      projectDescription: 'A website for selling furniture online',
-      budget: 5000,
+      _id: 'dummy1',
+      projectTitle: 'Dummy Project 1',
+      projectType: 'Web Development',
+      projectDescription: 'This is a dummy project description.',
+      budget: 1000,
       deadline: '2024-12-31',
-      additionalNotes: 'Need a responsive and modern design',
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      additionalNotes: 'This is some additional information about the project.',
     },
-    {
-      _id: '2',
-      name: 'Jane Smith',
-      email: 'janesmith@gmail.com',
-      projectTitle: 'Blog Website',
-      projectType: 'Blog',
-      projectDescription: 'A simple and elegant blog site',
-      budget: 1500,
-      deadline: '2024-11-15',
-      additionalNotes: 'Should be easy to update and maintain',
-    },
+    // Add more dummy projects if needed
   ];
 
+  // Fetch projects from the backend API
   useEffect(() => {
-    fetch('https://freelancing-website-eta.vercel.app/api/projects/suggestions')
+    fetch('https://freelancing-website-eta.vercel.app/api/projects/suggestions') // Ensure this URL matches your backend server
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then((data) => setProjects([...dummyProjects, ...data]))
+      .then((data) => {
+        setProjects([...dummyProjects, ...data]); // Combine dummy and fetched projects
+      })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setProjects(dummyProjects); // Use dummy data if API fails
+        setProjects(dummyProjects); // Use dummy data if API call fails
       });
   }, []);
 
   // Function to handle project deletion
   const handleDelete = (projectId) => {
-    fetch(`https://freelancing-website-eta.vercel.app/api/projects/suggestions/${projectId}`, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Error deleting project');
-        }
-        // Update the project list after successful deletion
-        setProjects(projects.filter((project) => project._id !== projectId));
+    const confirmDelete = window.confirm('Are you sure you want to delete this project?');
+    if (confirmDelete) {
+      fetch(`https://freelancing-website-eta.vercel.app/api/projects/suggestions/${projectId}`, {
+        method: 'DELETE',
       })
-      .catch((error) => {
-        console.error('Error deleting project:', error);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Error deleting project');
+          }
+          // Update the project list after successful deletion
+          setProjects((prevProjects) => prevProjects.filter((project) => project._id !== projectId));
+        })
+        .catch((error) => {
+          console.error('Error deleting project:', error);
+        });
+    }
   };
 
   return (

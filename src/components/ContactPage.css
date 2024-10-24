@@ -1,0 +1,97 @@
+/* ContactPage.css */
+
+.contact-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fa; /* Light background for contrast */
+    border-radius: 8px; /* Rounded corners for the page */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.contact-page__title {
+    text-align: center;
+    color: #2c3e50; /* Darker title color */
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Transform title to uppercase */
+    letter-spacing: 1px; /* Space between letters */
+}
+
+.contact-page__loading {
+    text-align: center;
+    font-size: 1.2em;
+    color: #7f8c8d; /* Grey color for loading text */
+}
+
+.contact-card {
+    background-color: #ffffff; /* White card background */
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 8px; /* Rounded corners for the card */
+    padding: 20px;
+    margin: 15px 0; /* Space between cards */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
+    position: relative; /* Relative positioning for animations */
+}
+
+.contact-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.contact-card__name {
+    font-size: 1.5em; /* Larger font for name */
+    color: #34495e; /* Darker color for name */
+    margin-bottom: 10px; /* Space below the name */
+    border-bottom: 1px solid #ddd; /* Underline effect */
+    padding-bottom: 5px; /* Space below underline */
+}
+
+.contact-card__email,
+.contact-card__phone,
+.contact-card__message,
+.contact-card__date {
+    margin: 8px 0; /* Space between contact info */
+    color: #555; /* Dark grey color */
+    font-size: 1em; /* Standard font size */
+    line-height: 1.5; /* Increased line height for readability */
+}
+
+.contact-card__delete-button {
+    background-color: #e74c3c; /* Red background for delete button */
+    color: white; /* White text for button */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em; /* Standard font size for button */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth transitions */
+    position: absolute; /* Positioning the button */
+    bottom: 10px; /* Space from the bottom */
+    right: 10px; /* Space from the right */
+}
+
+.contact-card__delete-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+@media (max-width: 600px) {
+    .contact-page {
+        padding: 15px; /* Less padding on smaller screens */
+    }
+
+    .contact-card {
+        padding: 15px; /* Less padding inside cards */
+    }
+
+    .contact-card__title {
+        font-size: 1.3em; /* Slightly smaller font size */
+    }
+
+    .contact-card__delete-button {
+        padding: 8px 12px; /* Smaller button padding */
+    }
+}

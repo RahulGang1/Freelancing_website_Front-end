@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-const SignupPage = () => {
+const AdminSignup = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false); // New state for admin selection
   const [errorMessage, setErrorMessage] = useState('');
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -30,6 +31,7 @@ const SignupPage = () => {
           name,
           email,
           password,
+          isAdmin: true, // Always set isAdmin to true
         }),
       });
 
@@ -56,7 +58,7 @@ const SignupPage = () => {
         onSubmit={handleSubmit}
         className="bg-white p-6 md:p-10 rounded-lg shadow-lg w-full max-w-lg"
       >
-        <h1 className="text-2xl md:text-3xl font-bold mb-4 text-center">Signup</h1>
+        <h1 className="text-2xl md:text-3xl font-bold mb-4 text-center">Admin Signup</h1>
 
         {errorMessage && (
           <p className="text-red-500 text-xs italic mb-4">{errorMessage}</p>
@@ -96,11 +98,23 @@ const SignupPage = () => {
           toggleShowPassword={() => setShowConfirmPassword((prev) => !prev)}
         />
 
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">Admin Access</label>
+          <input
+            type="checkbox"
+            id="isAdmin"
+            checked={isAdmin}
+            onChange={(e) => setIsAdmin(e.target.checked)}
+            disabled // Disable checkbox as we want admin signup only
+          />
+          <label htmlFor="isAdmin" className="ml-2 text-gray-700">I am an Admin</label>
+        </div>
+
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4"
           type="submit"
         >
-          Signup
+          Signup as Admin
         </button>
       </form>
 
@@ -108,7 +122,7 @@ const SignupPage = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg text-center">
             <h2 className="text-xl font-bold mb-4">Signup Successful!</h2>
-            <p className="mb-4">You have successfully signed up as a user.</p>
+            <p className="mb-4">You have successfully signed up as an admin.</p>
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => setShowSuccessPopup(false)}
@@ -161,4 +175,4 @@ const PasswordField = ({ id, label, value, onChange, showPassword, toggleShowPas
   </div>
 );
 
-export default SignupPage;
+export default AdminSignup;
